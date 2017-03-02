@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    
+    <style media="screen">
+      p {
+        writing-mode: vertical-lr;
+        text-orientation: upright;
+        letter-spacing: 0.5em;
+        text-align: center;
+        line-height: 0;
+        text-transform: uppercase;
+        font-family: sans-serif;
+      }
+      
+      .letter {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque animi beatae et, laudantium atque blanditiis dolorem architecto nesciunt perspiciatis a aut repellendus enim rem culpa fugit.</p>
+  </body>
+  <script type="text/javascript">
+    var text = document.querySelector('p').innerHTML;
+
+    var inflectionPoint1indexed = 7;
+    var inflectionPoint = inflectionPoint1indexed - 1;
+    var cycleLength = 8;
+    var indent = 0.625;
+    
+    var cycleStep = ((2 * inflectionPoint) - cycleLength) * indent;
+
+    var output = '';
+    for (var i = 0; i < text.length; i++) {
+      output += '<span class="letter" style="left:' + ( (-(indent) * Math.abs((i % cycleLength) - inflectionPoint)) + (Math.floor(i / cycleLength) * cycleStep) + (inflectionPoint * indent) ) + 'em;">' + text[i] + '</span>';
+    }
+    
+    document.querySelector('p').innerHTML = output;
+  </script>
+</html>
